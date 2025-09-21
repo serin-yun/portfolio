@@ -17,6 +17,11 @@
   --shadow-lg: rgba(0, 0, 0, 0.15);
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
 html, body {
   margin: 0;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
