@@ -398,8 +398,8 @@ function generateQRCode() {
     return;
   }
   
-  // 현재 페이지 URL
-  const portfolioUrl = window.location.origin + window.location.pathname;
+  // 정확한 Netlify URL 사용
+  const portfolioUrl = 'https://serin-portfolio.netlify.app/';
   console.log('QR코드 생성 URL:', portfolioUrl);
   
   // Canvas 초기화
@@ -502,7 +502,8 @@ function generateOnlineQRCode() {
     return;
   }
   
-  const portfolioUrl = window.location.origin + window.location.pathname;
+  // 정확한 Netlify URL 사용
+  const portfolioUrl = 'https://serin-portfolio.netlify.app/';
   console.log('QR코드 생성 URL:', portfolioUrl);
   
   // 온라인 QR코드 생성 API 사용
