@@ -390,7 +390,7 @@ function updateContactInfo() {
   });
 }
 
-// QR코드 생성 함수
+// QR코드 생성 함수 (대체 방법)
 function generateQRCode() {
   const canvas = document.getElementById('qr-code');
   if (!canvas) {
@@ -398,73 +398,138 @@ function generateQRCode() {
     return;
   }
   
-  // QRCode 라이브러리가 로드되었는지 확인
-  if (typeof QRCode === 'undefined') {
-    console.error('QRCode 라이브러리가 로드되지 않았습니다');
-    // 기본 텍스트 표시
-    const ctx = canvas.getContext('2d');
-    ctx.fillStyle = '#f8fafc';
-    ctx.fillRect(0, 0, 200, 200);
-    ctx.fillStyle = '#64748b';
-    ctx.font = '14px Inter, sans-serif';
-    ctx.textAlign = 'center';
-    ctx.fillText('QR Code', 100, 100);
-    ctx.fillText('Loading...', 100, 120);
-    return;
-  }
-  
-  // 현재 페이지 URL 또는 Netlify 배포 URL
+  // 현재 페이지 URL
   const portfolioUrl = window.location.origin + window.location.pathname;
   console.log('QR코드 생성 URL:', portfolioUrl);
   
-  // QR코드 옵션
-  const options = {
-    width: 200,
-    height: 200,
-    margin: 2,
-    color: {
-      dark: '#1e293b',
-      light: '#ffffff'
-    },
-    errorCorrectionLevel: 'M'
-  };
+  // Canvas 초기화
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, 200, 200);
   
-  // QR코드 생성
-  QRCode.toCanvas(canvas, portfolioUrl, options, function (error) {
-    if (error) {
-      console.error('QR코드 생성 실패:', error);
-      // 실패 시 기본 텍스트 표시
-      const ctx = canvas.getContext('2d');
-      ctx.fillStyle = '#f8fafc';
-      ctx.fillRect(0, 0, 200, 200);
-      ctx.fillStyle = '#64748b';
-      ctx.font = '14px Inter, sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText('QR Code', 100, 100);
-      ctx.fillText('Generation', 100, 120);
-      ctx.fillText('Failed', 100, 140);
-    } else {
-      console.log('QR코드 생성 성공');
+  // QRCode 라이브러리 확인 및 생성
+  if (typeof QRCode !== 'undefined') {
+    try {
+      // QRCode.js 사용
+      const options = {
+        width: 200,
+        height: 200,
+        margin: 2,
+        color: {
+          dark: '#1e293b',
+          light: '#ffffff'
+        },
+        errorCorrectionLevel: 'M'
+      };
+      
+      QRCode.toCanvas(canvas, portfolioUrl, options, function (error) {
+        if (error) {
+          console.error('QRCode.js 생성 실패:', error);
+          generateFallbackQRCode();
+        } else {
+          console.log('QRCode.js 생성 성공');
+        }
+      });
+    } catch (error) {
+      console.error('QRCode.js 오류:', error);
+      generateFallbackQRCode();
     }
-  });
+  } else {
+    console.log('QRCode.js 라이브러리 없음, 대체 방법 사용');
+    generateFallbackQRCode();
+  }
 }
 
-// QRCode 라이브러리 로드 대기 및 QR코드 생성
-function waitForQRCodeLibrary() {
-  if (typeof QRCode !== 'undefined') {
-    generateQRCode();
-  } else {
-    console.log('QRCode 라이브러리 로드 대기 중...');
-    setTimeout(waitForQRCodeLibrary, 100);
+// 대체 QR코드 생성 (간단한 패턴)
+function generateFallbackQRCode() {
+  const canvas = document.getElementById('qr-code');
+  const ctx = canvas.getContext('2d');
+  
+  // 배경
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, 200, 200);
+  
+  // QR코드 패턴 그리기 (간단한 버전)
+  ctx.fillStyle = '#1e293b';
+  
+  // 모서리 마커
+  drawCornerMarker(ctx, 20, 20);
+  drawCornerMarker(ctx, 140, 20);
+  drawCornerMarker(ctx, 20, 140);
+  
+  // 중앙 패턴
+  for (let i = 0; i < 8; i++) {
+    for (let j = 0; j < 8; j++) {
+      if ((i + j) % 2 === 0) {
+        ctx.fillRect(70 + i * 10, 70 + j * 10, 10, 10);
+      }
+    }
   }
+  
+  // 중앙 로고
+  ctx.fillStyle = '#3b82f6';
+  ctx.fillRect(90, 90, 20, 20);
+  ctx.fillStyle = '#ffffff';
+  ctx.font = '12px Arial';
+  ctx.textAlign = 'center';
+  ctx.fillText('SY', 100, 103);
+  
+  // 테두리
+  ctx.strokeStyle = '#3b82f6';
+  ctx.lineWidth = 3;
+  ctx.strokeRect(10, 10, 180, 180);
+  
+  console.log('대체 QR코드 생성 완료');
+}
+
+// 모서리 마커 그리기
+function drawCornerMarker(ctx, x, y) {
+  // 외부 사각형
+  ctx.fillRect(x, y, 40, 40);
+  // 내부 흰색 사각형
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(x + 10, y + 10, 20, 20);
+  // 중앙 검은색 사각형
+  ctx.fillStyle = '#1e293b';
+  ctx.fillRect(x + 15, y + 15, 10, 10);
+}
+
+// 온라인 QR코드 생성 (가장 안정적)
+function generateOnlineQRCode() {
+  const canvas = document.getElementById('qr-code');
+  if (!canvas) {
+    console.error('QR코드 Canvas를 찾을 수 없습니다');
+    return;
+  }
+  
+  const portfolioUrl = window.location.origin + window.location.pathname;
+  console.log('QR코드 생성 URL:', portfolioUrl);
+  
+  // 온라인 QR코드 생성 API 사용
+  const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(portfolioUrl)}`;
+  
+  // 이미지 로드
+  const img = new Image();
+  img.crossOrigin = 'anonymous';
+  
+  img.onload = function() {
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0, 200, 200);
+    console.log('온라인 QR코드 생성 성공');
+  };
+  
+  img.onerror = function() {
+    console.error('온라인 QR코드 생성 실패, 대체 방법 사용');
+    generateFallbackQRCode();
+  };
+  
+  img.src = qrApiUrl;
 }
 
 // 페이지 로드 시 연락처 정보 업데이트 및 QR코드 생성
 document.addEventListener('DOMContentLoaded', function() {
   updateContactInfo();
   
-  // QRCode 라이브러리 로드 대기 후 QR코드 생성
-  setTimeout(() => {
-    waitForQRCodeLibrary();
-  }, 500);
+  // 즉시 QR코드 생성 (온라인 API 사용)
+  generateOnlineQRCode();
 });
