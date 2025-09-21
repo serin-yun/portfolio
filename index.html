@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Serin Yun Portfolio — IT Project Manager</title>
+<link rel="stylesheet" href="assets/css/style.css"/>
+</head>
+<body>
+<nav><div class="inner container">
+  <div class="brand">Serin Yun</div>
+  <div class="menu">
+    <a href="#projects">Projects</a><a href="#about">About</a><a href="#contact">Contact</a>
+    <div class="switch" id="langToggle">KR/EN</div>
+    <a class="switch" href="resume.pdf" download>📄 PDF</a>
+  </div>
+</div></nav>
+
+<header class="hero container">
+  <div>
+    <h1 class="title" data-ko="Serin Yun Portfolio" data-en="Serin Yun Portfolio">Serin Yun Portfolio</h1>
+    <p class="subtitle" data-ko="IT 프로젝트 관리 전문가 & AI 강의" data-en="IT Project Management Expert & AI Instructor">IT 프로젝트 관리 전문가 & AI 강의</p>
+    <div class="kpis"><div class="kpi" data-ko="🏢 15년 경력" data-en="🏢 15 Years Experience">🏢 15년 경력</div><div class="kpi" data-ko="📊 프로젝트 50+" data-en="📊 50+ Projects">📊 프로젝트 50+</div><div class="kpi" data-ko="🎯 자격증 4개" data-en="🎯 4 Certifications">🎯 자격증 4개</div></div>
+    <div style="display:flex;gap:10px;margin-top:10px"><a class="btn" href="#projects" data-ko="프로젝트 보기" data-en="View Projects">View Projects</a><a class="btn ghost" href="#contact" data-ko="연락하기" data-en="Contact">Contact</a></div>
+  </div>
+  <img src="assets/img/hero.svg" alt="Cover"/>
+</header>
+
+<main class="container">
+  <section id="projects" class="section">
+    <h2 data-ko="주요 프로젝트" data-en="Featured Projects">Featured Projects</h2>
+    <div class="grid">
+      <article class="card"><img src="assets/img/project1.svg"/><div class="body"><span class="badge">ERP</span><h3>아모레퍼시픽 SCM 시스템</h3><p class="subtitle">공급망 플래닝/ERP 구축</p></div></article>
+      <article class="card"><img src="assets/img/project2.svg"/><div class="body"><span class="badge">AI</span><h3>생성형 AI 솔루션</h3><p class="subtitle">데이터 기반 프로젝트 기획</p></div></article>
+      <article class="card"><img src="assets/img/project3.svg"/><div class="body"><span class="badge">System</span><h3>SK·아모레 대규모 프로젝트</h3><p class="subtitle">통신/방송/제조/전자상거래</p></div></article>
+    </div>
+  </section>
+
+  <section id="about" class="section about">
+    <img src="assets/img/avatar.svg"/>
+    <div><h2 data-ko="소개" data-en="About">About</h2><p class="subtitle" data-ko="아모레퍼시픽 IT 프로젝트 PM, 15년차 대규모 시스템 구축 및 운영 전문가. 통신/방송/제조/전자상거래 분야 경험. 정보관리기술사, 데이터아키텍처 전문가, SAP 컨설턴트 자격 보유." data-en="Amorepacific IT Project PM, 15-year expert in large-scale system construction and operation. Experience in telecommunications/broadcasting/manufacturing/e-commerce sectors. Certified Information Management Engineer, Data Architecture Specialist, SAP Consultant.">아모레퍼시픽 IT 프로젝트 PM, 15년차 대규모 시스템 구축 및 운영 전문가. 통신/방송/제조/전자상거래 분야 경험. 정보관리기술사, 데이터아키텍처 전문가, SAP 컨설턴트 자격 보유.</p>
+      <div class="skills"><div class="skill">정보관리기술사</div><div class="skill">데이터아키텍처</div><div class="skill">SAP 컨설턴트</div><div class="skill">OCP DBA</div><div class="skill">생성형 AI</div><div class="skill">ERP</div></div>
+    </div>
+  </section>
+
+  <section id="contact" class="section contact">
+    <div>
+      <h2 data-ko="연락처" data-en="Contact">Contact</h2>
+      <form name="contact" netlify netlify-honeypot="bot-field">
+        <input class="input" name="name" placeholder="Your name" data-ko-placeholder="이름" data-en-placeholder="Your name" required style="margin-bottom:8px"/>
+        <input class="input" name="email" placeholder="Email" data-ko-placeholder="이메일" data-en-placeholder="Email" required style="margin-bottom:8px"/>
+        <textarea class="input" name="message" rows="5" placeholder="Message" data-ko-placeholder="메시지" data-en-placeholder="Message" required></textarea>
+        <div style="margin-top:10px;display:flex;gap:10px"><button class="btn" type="submit" data-ko="전송" data-en="Send">Send</button><a class="btn ghost" href="resume.pdf" download data-ko="이력서 PDF" data-en="Resume PDF">Resume PDF</a></div>
+      </form>
+    </div>
+    <div><h2 data-ko="QR 코드로 열기" data-en="Open via QR">Open via QR</h2><img class="qr" src="assets/img/qr.svg"/></div>
+  </section>
+<section class="section" id="dev-links"><h2 data-ko="GitHub & 라이브 데모" data-en="GitHub & Live Demos">GitHub & Live Demos</h2><div class="grid">
+<a class="card" href="https://github.com/smartitpeyun" target="_blank"><div class="body"><span class="badge">GitHub</span><h3>IT Project Portfolio</h3><p class="subtitle">ERP · AI · System Architecture · PM</p></div></a>
+<a class="card" href="https://smartitpeyun.github.io" target="_blank"><div class="body"><span class="badge">Portfolio</span><h3>Professional Experience</h3><p class="subtitle">15년차 · 대규모 프로젝트 · PM</p></div></a>
+<article class="card"><div class="body"><span class="badge">Certification</span><h3>Professional Qualifications</h3><p class="subtitle">정보관리기술사 · 데이터아키텍처 · SAP 컨설턴트 · OCP DBA</p><img src="assets/img/project5.jpg"/></div></article>
+</div></section>
+</main>
+
+<footer class="container" style="opacity:.8;display:flex;justify-content:space-between;margin:30px 0 10px">
+  <div>📧 <a href="mailto:smartitpeyun@gmail.com">smartitpeyun@gmail.com</a> · 📱 <a href="tel:010-4143-9828">010-4143-9828</a> · 🔗 <a href="https://linkedin.com/in/smartitpeyun" target="_blank">linkedin.com/in/smartitpeyun</a> · 🔗 <a href="https://github.com/smartitpeyun" target="_blank">github.com/smartitpeyun</a></div><div>© 2025 Serin Yun Portfolio</div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script src="assets/js/app.js"></script>
+</body></html>

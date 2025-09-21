@@ -1,0 +1,21 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="600" fill="#F8FAFC"/>
+<rect x="0" y="0" width="800" height="600" fill="url(#gradient)"/>
+<defs>
+<linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" style="stop-color:#4F46E5;stop-opacity:0.1"/>
+<stop offset="100%" style="stop-color:#667EEA;stop-opacity:0.1"/>
+</linearGradient>
+</defs>
+<rect x="100" y="100" width="600" height="400" rx="20" fill="white" stroke="#E2E8F0" stroke-width="2"/>
+<rect x="150" y="150" width="500" height="60" rx="10" fill="#4F46E5"/>
+<text x="400" y="190" font-family="Arial, sans-serif" font-size="24" fill="white" text-anchor="middle">Professional IT Project Manager</text>
+<rect x="150" y="230" width="200" height="120" rx="10" fill="#F8FAFC"/>
+<rect x="370" y="230" width="200" height="120" rx="10" fill="#F8FAFC"/>
+<rect x="150" y="370" width="500" height="80" rx="10" fill="#10B981"/>
+<text x="400" y="420" font-family="Arial, sans-serif" font-size="18" fill="white" text-anchor="middle">15년 경력 · 대규모 프로젝트 · PMP 자격</text>
+<circle cx="250" cy="290" r="20" fill="#10B981"/>
+<circle cx="470" cy="290" r="20" fill="#F59E0B"/>
+<text x="250" y="330" font-family="Arial, sans-serif" font-size="12" fill="#64748B" text-anchor="middle">ERP Systems</text>
+<text x="470" y="330" font-family="Arial, sans-serif" font-size="12" fill="#64748B" text-anchor="middle">AI Solutions</text>
+</svg>

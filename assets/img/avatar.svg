@@ -1,0 +1,10 @@
+<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="400" height="400" fill="#F8FAFC"/>
+<circle cx="200" cy="160" r="60" fill="#4F46E5"/>
+<rect x="140" y="240" width="120" height="80" rx="40" fill="#4F46E5"/>
+<svg x="180" y="180" width="40" height="40" viewBox="0 0 40 40" fill="none">
+<path d="M20 10C15.582 10 11 14.582 11 19V23H13V19C13 15.686 15.686 13 19 13H21C24.314 13 27 15.686 27 19V23H29V19C29 14.582 24.418 10 20 10Z" fill="white"/>
+</svg>
+<text x="200" y="340" font-family="Arial, sans-serif" font-size="18" fill="#2D3748" text-anchor="middle">Serin Yun</text>
+<text x="200" y="360" font-family="Arial, sans-serif" font-size="14" fill="#4A5568" text-anchor="middle">IT Project Manager</text>
+</svg>
