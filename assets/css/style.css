@@ -830,10 +830,14 @@ html, body {
   border-radius: 20px;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  background: var(--surface);
+  background: linear-gradient(135deg, 
+    #faf8f5 0%, 
+    #f5f3f0 50%,
+    #f0ede8 100%);
   padding: 20px;
   position: relative;
   overflow: hidden;
+  border: 1px solid #e8e4e0;
 }
 
 .about img::before {
@@ -844,8 +848,9 @@ html, body {
   right: 0;
   bottom: 0;
   background: linear-gradient(135deg, 
-    rgba(59, 130, 246, 0.05) 0%, 
-    rgba(139, 92, 246, 0.05) 100%);
+    rgba(250, 248, 245, 0.3) 0%, 
+    rgba(245, 243, 240, 0.2) 50%,
+    rgba(240, 237, 232, 0.1) 100%);
   border-radius: 18px;
   pointer-events: none;
 }
@@ -853,6 +858,11 @@ html, body {
 .about img:hover {
   transform: translateY(-4px);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, 
+    #f8f6f2 0%, 
+    #f3f1ed 50%,
+    #ede9e4 100%);
+  border-color: #ddd8d2;
 }
 
 .skills {
@@ -1193,6 +1203,7 @@ footer {
     height: 280px;
     margin: 0 auto;
     padding: 16px;
+    border: 1px solid #e8e4e0;
   }
 }
 
@@ -1224,5 +1235,6 @@ footer {
     max-width: 240px;
     height: 240px;
     padding: 12px;
+    border: 1px solid #e8e4e0;
   }
 }
