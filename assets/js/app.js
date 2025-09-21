@@ -1,9 +1,18 @@
-// 언어 토글 기능
-document.getElementById('langToggle')?.addEventListener('click', () => {
-  const isKorean = document.getElementById('langToggle').textContent.includes('KR');
+// 언어 상태 관리
+let currentLanguage = 'ko'; // 기본값: 한국어
+
+// 언어 전환 함수
+function switchLanguage() {
+  const langToggle = document.getElementById('langToggle');
+  if (!langToggle) return;
   
-  // 언어 토글 버튼 텍스트 변경
-  document.getElementById('langToggle').textContent = isKorean ? 'EN/KR' : 'KR/EN';
+  // 언어 상태 토글
+  currentLanguage = currentLanguage === 'ko' ? 'en' : 'ko';
+  
+  console.log('언어 전환:', currentLanguage);
+  
+  // 버튼 텍스트 업데이트
+  langToggle.textContent = currentLanguage === 'ko' ? 'KR/EN' : 'EN/KR';
   
   // 모든 다국어 요소 업데이트
   document.querySelectorAll('[data-ko]').forEach(el => {
@@ -11,7 +20,7 @@ document.getElementById('langToggle')?.addEventListener('click', () => {
     const en = el.getAttribute('data-en');
     
     if (ko && en) {
-      el.textContent = isKorean ? en : ko;
+      el.textContent = currentLanguage === 'ko' ? ko : en;
     }
   });
   
@@ -21,16 +30,62 @@ document.getElementById('langToggle')?.addEventListener('click', () => {
     const en = el.getAttribute('data-en-placeholder');
     
     if (ko && en) {
-      el.placeholder = isKorean ? en : ko;
+      el.placeholder = currentLanguage === 'ko' ? ko : en;
     }
   });
   
   // 페이지 제목 변경
-  if (isKorean) {
-    document.title = "Serin Yun Portfolio — IT Project Manager";
-  } else {
-    document.title = "Serin Yun Portfolio — IT Project Manager";
+  document.title = "Serin Yun Portfolio — IT Project Manager";
+  
+  // 언어 상태를 localStorage에 저장
+  localStorage.setItem('portfolioLanguage', currentLanguage);
+}
+
+// 페이지 로드 시 언어 상태 복원
+function initializeLanguage() {
+  // localStorage에서 저장된 언어 상태 불러오기
+  const savedLanguage = localStorage.getItem('portfolioLanguage');
+  if (savedLanguage && (savedLanguage === 'ko' || savedLanguage === 'en')) {
+    currentLanguage = savedLanguage;
   }
+  
+  // 초기 언어 설정 적용
+  const langToggle = document.getElementById('langToggle');
+  if (langToggle) {
+    langToggle.textContent = currentLanguage === 'ko' ? 'KR/EN' : 'EN/KR';
+  }
+  
+  // 초기 텍스트 설정
+  document.querySelectorAll('[data-ko]').forEach(el => {
+    const ko = el.getAttribute('data-ko');
+    const en = el.getAttribute('data-en');
+    
+    if (ko && en) {
+      el.textContent = currentLanguage === 'ko' ? ko : en;
+    }
+  });
+  
+  // 초기 플레이스홀더 설정
+  document.querySelectorAll('[data-ko-placeholder]').forEach(el => {
+    const ko = el.getAttribute('data-ko-placeholder');
+    const en = el.getAttribute('data-en-placeholder');
+    
+    if (ko && en) {
+      el.placeholder = currentLanguage === 'ko' ? ko : en;
+    }
+  });
+  
+  console.log('초기 언어 설정:', currentLanguage);
+}
+
+// 언어 토글 이벤트 리스너
+document.getElementById('langToggle')?.addEventListener('click', switchLanguage);
+
+// 페이지 로드 시 모든 초기화 함수 실행
+document.addEventListener('DOMContentLoaded', function() {
+  initializeLanguage();
+  initializeContactForm();
+  updateContactInfo();
 });
 
 // 알림 메시지 표시 함수 (먼저 정의)
@@ -139,8 +194,8 @@ function showNotification(message, type = 'info') {
 // 즉시 실행되는 테스트
 console.log('JavaScript 파일 로드됨!');
 
-// 연락하기 폼 처리
-document.addEventListener('DOMContentLoaded', function() {
+// 연락하기 폼 처리 (DOMContentLoaded 이벤트는 이미 위에서 처리됨)
+function initializeContactForm() {
   console.log('DOM 로드 완료');
   
   // 폼 요소 찾기
@@ -291,5 +346,4 @@ function updateContactInfo() {
   });
 }
 
-// 페이지 로드 시 연락처 정보 업데이트
-document.addEventListener('DOMContentLoaded', updateContactInfo);
+// 연락처 정보 업데이트는 메인 DOMContentLoaded에서 호출
