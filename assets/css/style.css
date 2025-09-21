@@ -830,15 +830,38 @@ html, body {
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.9) 0%, 
-    rgba(248, 250, 252, 0.8) 100%);
+    #f5f5dc 0%, 
+    #f0e68c 50%,
+    #daa520 100%);
   padding: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid #d4af37;
+  position: relative;
+  overflow: hidden;
+}
+
+.about img::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    rgba(255, 255, 255, 0.05) 100%);
+  border-radius: 18px;
+  pointer-events: none;
 }
 
 .about img:hover {
   transform: translateY(-4px);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  border-color: #b8860b;
+  background: linear-gradient(135deg, 
+    #f5f5dc 0%, 
+    #f0e68c 30%,
+    #daa520 70%,
+    #b8860b 100%);
 }
 
 .skills {
@@ -1178,6 +1201,8 @@ footer {
     max-width: 280px;
     height: 280px;
     margin: 0 auto;
+    padding: 16px;
+    border: 2px solid #d4af37;
   }
 }
 
@@ -1208,6 +1233,7 @@ footer {
   .about img {
     max-width: 240px;
     height: 240px;
-    padding: 16px;
+    padding: 12px;
+    border: 2px solid #d4af37;
   }
 }
