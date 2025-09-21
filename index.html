@@ -23,14 +23,34 @@
 <link rel="stylesheet" href="assets/css/style.css"/>
 </head>
 <body>
-<nav><div class="inner container">
-  <div class="brand">Serin Yun</div>
-  <div class="menu">
-    <a href="#projects" data-ko="프로젝트" data-en="Projects">Projects</a><a href="#about" data-ko="소개" data-en="About">About</a><a href="#contact" data-ko="연락처" data-en="Contact">Contact</a>
-    <div class="switch" id="langToggle">KR/EN</div>
-    <a class="switch" href="resume.pdf" download>📄 PDF</a>
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="nav-brand">
+      <div class="brand-logo">
+        <span class="logo-icon">💼</span>
+        <span class="brand-text">Serin Yun</span>
+      </div>
+    </div>
+    
+    <div class="nav-menu">
+      <a href="#projects" class="nav-link" data-ko="프로젝트" data-en="Projects">Projects</a>
+      <a href="#about" class="nav-link" data-ko="소개" data-en="About">About</a>
+      <a href="#contact" class="nav-link" data-ko="연락처" data-en="Contact">Contact</a>
+    </div>
+    
+    <div class="nav-actions">
+      <button class="lang-toggle" id="langToggle">
+        <span class="lang-text">KR</span>
+        <span class="lang-slash">/</span>
+        <span class="lang-text">EN</span>
+      </button>
+      <a class="resume-btn" href="resume.pdf" download>
+        <span class="btn-icon">📄</span>
+        <span class="btn-text" data-ko="이력서" data-en="Resume">Resume</span>
+      </a>
+    </div>
   </div>
-</div></nav>
+</nav>
 
 <header class="hero">
   <div class="hero-background">
