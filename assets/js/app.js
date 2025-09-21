@@ -393,10 +393,29 @@ function updateContactInfo() {
 // QR코드 생성 함수
 function generateQRCode() {
   const canvas = document.getElementById('qr-code');
-  if (!canvas) return;
+  if (!canvas) {
+    console.error('QR코드 Canvas를 찾을 수 없습니다');
+    return;
+  }
+  
+  // QRCode 라이브러리가 로드되었는지 확인
+  if (typeof QRCode === 'undefined') {
+    console.error('QRCode 라이브러리가 로드되지 않았습니다');
+    // 기본 텍스트 표시
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#f8fafc';
+    ctx.fillRect(0, 0, 200, 200);
+    ctx.fillStyle = '#64748b';
+    ctx.font = '14px Inter, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('QR Code', 100, 100);
+    ctx.fillText('Loading...', 100, 120);
+    return;
+  }
   
   // 현재 페이지 URL 또는 Netlify 배포 URL
   const portfolioUrl = window.location.origin + window.location.pathname;
+  console.log('QR코드 생성 URL:', portfolioUrl);
   
   // QR코드 옵션
   const options = {
@@ -430,8 +449,22 @@ function generateQRCode() {
   });
 }
 
+// QRCode 라이브러리 로드 대기 및 QR코드 생성
+function waitForQRCodeLibrary() {
+  if (typeof QRCode !== 'undefined') {
+    generateQRCode();
+  } else {
+    console.log('QRCode 라이브러리 로드 대기 중...');
+    setTimeout(waitForQRCodeLibrary, 100);
+  }
+}
+
 // 페이지 로드 시 연락처 정보 업데이트 및 QR코드 생성
 document.addEventListener('DOMContentLoaded', function() {
   updateContactInfo();
-  generateQRCode();
+  
+  // QRCode 라이브러리 로드 대기 후 QR코드 생성
+  setTimeout(() => {
+    waitForQRCodeLibrary();
+  }, 500);
 });
