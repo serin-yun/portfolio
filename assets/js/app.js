@@ -305,6 +305,27 @@ document.addEventListener('DOMContentLoaded', function() {
         // 스크롤을 메시지로 이동
         successMessage.scrollIntoView({ behavior: 'smooth' });
         console.log('🎉 성공 메시지 표시 완료!');
+        
+        // 닫기 버튼 이벤트 리스너 추가
+        const closeButton = document.getElementById('close-success-message');
+        if (closeButton) {
+          closeButton.addEventListener('click', function() {
+            console.log('🔄 사용자가 닫기 버튼 클릭');
+            contactForm.style.display = 'block';
+            successMessage.style.display = 'none';
+            contactForm.reset();
+          });
+        }
+        
+        // 3초 후 자동 폼 복원 및 메시지 숨김
+        setTimeout(() => {
+          console.log('🔄 자동 폼 복원 중...');
+          contactForm.style.display = 'block';
+          successMessage.style.display = 'none';
+          // 폼 초기화
+          contactForm.reset();
+          console.log('🔄 자동 폼 복원 완료!');
+        }, 3000);
       } else {
         console.log('❌ 성공 메시지 요소를 찾을 수 없음');
       }
