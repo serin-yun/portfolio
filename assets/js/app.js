@@ -254,7 +254,6 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('Send 버튼 이벤트 리스너 추가');
     sendButton.addEventListener('click', function(e) {
       console.log('Send 버튼 클릭됨!');
-      e.preventDefault();
       
       // 폼 데이터 가져오기
       const nameInput = document.querySelector('input[name="name"]');
@@ -270,6 +269,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // 입력값 검증
       if (!name || !email || !message) {
         console.log('입력값 검증 실패');
+        e.preventDefault(); // 유효성 검사 실패 시만 제출 방지
         alert('모든 필드를 입력해주세요.');
         return;
       }
@@ -278,55 +278,13 @@ document.addEventListener('DOMContentLoaded', function() {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
         console.log('이메일 형식 검증 실패');
+        e.preventDefault(); // 유효성 검사 실패 시만 제출 방지
         alert('올바른 이메일 주소를 입력해주세요.');
         return;
       }
       
-      // 이메일 링크 생성
-      const subject = encodeURIComponent(`포트폴리오 문의 - ${name}`);
-      const body = encodeURIComponent(`이름: ${name}\n이메일: ${email}\n\n메시지:\n${message}`);
-      const mailtoLink = `mailto:smartitpeyun@gmail.com?subject=${subject}&body=${body}`;
-      
-      console.log('이메일 링크:', mailtoLink);
-      
-      // Netlify Forms를 사용한 이메일 전송
-      try {
-        // 폼 데이터를 FormData 객체로 생성
-        const formData = new FormData();
-        formData.append('form-name', 'contact');
-        formData.append('name', name);
-        formData.append('email', email);
-        formData.append('message', message);
-        
-        // Netlify Forms로 전송
-        fetch('/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams(formData).toString()
-        }).then(response => {
-          if (response.ok) {
-            console.log('이메일 전송 성공');
-            alert('메시지가 성공적으로 전송되었습니다!');
-          } else {
-            throw new Error('전송 실패');
-          }
-        }).catch(error => {
-          console.log('이메일 전송 실패:', error);
-          // 실패 시 mailto 링크로 대체
-          window.location.href = mailtoLink;
-          alert('이메일 클라이언트가 열렸습니다.\n\n📧 smartitpeyun@gmail.com으로 메시지를 전송해주세요.\n\n💡 팁: 이메일 클라이언트가 열리지 않으면 직접 smartitpeyun@gmail.com으로 연락해주세요.');
-        });
-      } catch (error) {
-        console.log('전송 오류:', error);
-        // 오류 시 mailto 링크로 대체
-        window.location.href = mailtoLink;
-        alert('이메일 클라이언트가 열렸습니다.\n\n📧 smartitpeyun@gmail.com으로 메시지를 전송해주세요.\n\n💡 팁: 이메일 클라이언트가 열리지 않으면 직접 smartitpeyun@gmail.com으로 연락해주세요.');
-      }
-      
-      // 폼 초기화
-      if (contactForm) {
-        contactForm.reset();
-      }
+      // 유효성 검사 통과 시 Netlify Forms가 자연스럽게 제출됨
+      console.log('유효성 검사 통과 - Netlify Forms가 처리합니다.');
     });
   } else {
     console.log('Send 버튼을 찾을 수 없습니다');
