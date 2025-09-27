@@ -242,8 +242,8 @@ console.log('JavaScript 파일 로드됨!');
 document.addEventListener('DOMContentLoaded', function() {
   console.log('DOM 로드 완료');
   
-  // 폼 요소 찾기
-  const contactForm = document.querySelector('form[name="contact"]');
+  // 폼 요소 찾기 (ID로 특정 폼 선택)
+  const contactForm = document.getElementById('contact-form');
   console.log('폼 요소:', contactForm);
   
   // Send 버튼 직접 찾기
