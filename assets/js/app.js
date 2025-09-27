@@ -287,6 +287,11 @@ document.addEventListener('DOMContentLoaded', function() {
       console.log('유효성 검사 통과 - Netlify Forms가 처리합니다.');
     });
     
+    // 추가: 폼 제출 이벤트도 추가
+    contactForm.addEventListener('submit', function(e) {
+      console.log('📝 폼 제출 이벤트 발생!');
+    });
+    
     console.log('이벤트 리스너 추가 완료');
   } else {
     console.log('폼 또는 버튼을 찾을 수 없습니다');
