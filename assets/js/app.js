@@ -253,9 +253,10 @@ document.addEventListener('DOMContentLoaded', function() {
   // Netlify Forms 호환 모드
   console.log('Netlify Forms 호환 모드 활성화');
   
-  if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-      console.log('🚀 Netlify Forms 제출 시작...');
+  if (contactForm && sendButton) {
+    // Send 버튼 클릭 이벤트로 변경
+    sendButton.addEventListener('click', function(e) {
+      console.log('🔘 Send 버튼 클릭됨!');
       
       // 폼 데이터 수집
       const formData = new FormData(contactForm);
