@@ -257,22 +257,8 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log('Netlify Forms 처리 모드 활성화');
   console.log('✅ 사용자 정의 성공 메시지 기능 활성화됨');
   
-  // 성공 메시지 요소 존재 확인
-  const successMessage = document.getElementById('success-message');
-  console.log('성공 메시지 요소 확인:', successMessage);
-  if (successMessage) {
-    console.log('성공 메시지 내용:', successMessage.innerHTML);
-    console.log('성공 메시지 현재 display:', successMessage.style.display);
-  }
-  
-  // 성공 메시지 강제 표시 테스트 (5초 후)
-  setTimeout(() => {
-    console.log('🧪 성공 메시지 강제 표시 테스트 시작');
-    if (successMessage) {
-      successMessage.style.display = 'block';
-      console.log('🧪 성공 메시지 강제 표시됨');
-    }
-  }, 5000);
+  // 얼럿 메시지 모드 활성화
+  console.log('📱 얼럿 메시지 모드 활성화');
   
   if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
@@ -334,32 +320,19 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-// 이메일 전송 완료 메시지 표시 함수
+// 이메일 전송 완료 메시지 표시 함수 (얼럿 메시지)
 function showEmailSentMessage() {
   console.log('📧 이메일 전송 완료 메시지 표시');
-  const successMessage = document.getElementById('success-message');
-  if (successMessage) {
-    successMessage.style.display = 'block';
-    successMessage.style.visibility = 'visible';
-    successMessage.style.opacity = '1';
-    successMessage.scrollIntoView({ behavior: 'smooth' });
-    
-    // 확인 버튼 이벤트 리스너 추가
-    const closeButton = document.getElementById('close-success-message');
-    if (closeButton) {
-      closeButton.addEventListener('click', function() {
-        console.log('🔄 사용자가 확인 버튼 클릭');
-        const contactForm = document.getElementById('contact-form');
-        if (contactForm) {
-          contactForm.style.display = 'block';
-          contactForm.reset();
-        }
-        successMessage.style.display = 'none';
-        successMessage.style.visibility = 'hidden';
-        successMessage.style.opacity = '0';
-        console.log('🔄 폼 복원 완료!');
-      });
-    }
+  
+  // 얼럿 메시지로 성공 알림
+  alert('📧 이메일 전송 완료!\n\n메시지가 성공적으로 전송되었습니다.\n빠른 시일 내에 연락드리겠습니다.');
+  
+  // 폼 복원
+  const contactForm = document.getElementById('contact-form');
+  if (contactForm) {
+    contactForm.style.display = 'block';
+    contactForm.reset();
+    console.log('🔄 폼 복원 완료!');
   }
 }
 
