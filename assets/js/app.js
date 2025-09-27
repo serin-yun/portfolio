@@ -277,6 +277,10 @@ document.addEventListener('DOMContentLoaded', function() {
             email: formData.get('email'),
             message: formData.get('message')
           });
+          
+          // 폼 제출 강제 실행 테스트
+          console.log('🚀 폼 제출 강제 실행 테스트...');
+          contactForm.submit();
         }, 100);
       });
     }
