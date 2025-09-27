@@ -255,10 +255,10 @@ document.addEventListener('DOMContentLoaded', function() {
     sendButton.addEventListener('click', function(e) {
       console.log('Send 버튼 클릭됨!');
       
-      // 폼 데이터 가져오기
-      const nameInput = document.querySelector('input[name="name"]');
-      const emailInput = document.querySelector('input[name="email"]');
-      const messageInput = document.querySelector('textarea[name="message"]');
+      // 폼 데이터 가져오기 (특정 폼 내부의 입력 필드)
+      const nameInput = contactForm.querySelector('input[name="name"]');
+      const emailInput = contactForm.querySelector('input[name="email"]');
+      const messageInput = contactForm.querySelector('textarea[name="message"]');
       
       const name = nameInput ? nameInput.value : '';
       const email = emailInput ? emailInput.value : '';
