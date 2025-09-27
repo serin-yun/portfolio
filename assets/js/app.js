@@ -305,54 +305,9 @@ document.addEventListener('DOMContentLoaded', function() {
       // 유효성 검사 통과 시 사용자 정의 성공 메시지 표시
       console.log('유효성 검사 통과 - 사용자 정의 성공 메시지 표시');
       
-      // 즉시 성공 메시지 표시
-      const successMessage = document.getElementById('success-message');
-      console.log('🔍 성공 메시지 요소 재확인:', successMessage);
-      
-      if (successMessage) {
-        console.log('✅ 성공 메시지 표시 중...');
-        console.log('🔍 표시 전 display 상태:', successMessage.style.display);
-        
-        successMessage.style.display = 'block';
-        successMessage.style.visibility = 'visible';
-        successMessage.style.opacity = '1';
-        console.log('🔍 표시 후 display 상태:', successMessage.style.display);
-        console.log('🔍 표시 후 visibility 상태:', successMessage.style.visibility);
-        console.log('🔍 표시 후 opacity 상태:', successMessage.style.opacity);
-        
-        // 폼 숨기기
-        contactForm.style.display = 'none';
-        console.log('🔍 폼 숨김 완료');
-        
-        // 스크롤을 메시지로 이동
-        successMessage.scrollIntoView({ behavior: 'smooth' });
-        console.log('🔍 스크롤 이동 완료');
-        
-        console.log('🎉 성공 메시지 표시 완료!');
-        
-        // 닫기 버튼 이벤트 리스너 추가
-        const closeButton = document.getElementById('close-success-message');
-        if (closeButton) {
-          closeButton.addEventListener('click', function() {
-            console.log('🔄 사용자가 닫기 버튼 클릭');
-            contactForm.style.display = 'block';
-            successMessage.style.display = 'none';
-            contactForm.reset();
-          });
-        }
-        
-        // 3초 후 자동 폼 복원 및 메시지 숨김
-        setTimeout(() => {
-          console.log('🔄 자동 폼 복원 중...');
-          contactForm.style.display = 'block';
-          successMessage.style.display = 'none';
-          // 폼 초기화
-          contactForm.reset();
-          console.log('🔄 자동 폼 복원 완료!');
-        }, 3000);
-      } else {
-        console.log('❌ 성공 메시지 요소를 찾을 수 없음');
-      }
+      // 폼 숨기기 (이메일 전송 완료 후 메시지 표시를 위해)
+      contactForm.style.display = 'none';
+      console.log('🔍 폼 숨김 완료 - 이메일 전송 대기 중');
       
       // Netlify Forms로 수동 제출
       console.log('📤 Netlify Forms로 수동 제출 중...');
@@ -362,13 +317,57 @@ document.addEventListener('DOMContentLoaded', function() {
         body: new URLSearchParams(formData)
       }).then(response => {
         console.log('📤 Netlify Forms 제출 완료:', response);
+        if (response.ok) {
+          console.log('✅ 이메일 전송 성공!');
+          // 이메일 전송 완료 메시지 표시
+          showEmailSentMessage();
+        } else {
+          console.log('❌ 이메일 전송 실패');
+          showEmailErrorMessage();
+        }
       }).catch(error => {
         console.log('📤 Netlify Forms 제출 오류:', error);
+        showEmailErrorMessage();
       });
     });
   }
 });
 
+
+// 이메일 전송 완료 메시지 표시 함수
+function showEmailSentMessage() {
+  console.log('📧 이메일 전송 완료 메시지 표시');
+  const successMessage = document.getElementById('success-message');
+  if (successMessage) {
+    successMessage.style.display = 'block';
+    successMessage.style.visibility = 'visible';
+    successMessage.style.opacity = '1';
+    successMessage.scrollIntoView({ behavior: 'smooth' });
+    
+    // 확인 버튼 이벤트 리스너 추가
+    const closeButton = document.getElementById('close-success-message');
+    if (closeButton) {
+      closeButton.addEventListener('click', function() {
+        console.log('🔄 사용자가 확인 버튼 클릭');
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+          contactForm.style.display = 'block';
+          contactForm.reset();
+        }
+        successMessage.style.display = 'none';
+        successMessage.style.visibility = 'hidden';
+        successMessage.style.opacity = '0';
+        console.log('🔄 폼 복원 완료!');
+      });
+    }
+  }
+}
+
+// 이메일 전송 오류 메시지 표시 함수
+function showEmailErrorMessage() {
+  console.log('❌ 이메일 전송 오류 메시지 표시');
+  alert('이메일 전송 중 오류가 발생했습니다. 다시 시도해주세요.');
+}
 
 // 스무스 스크롤 기능
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
