@@ -267,6 +267,17 @@ document.addEventListener('DOMContentLoaded', function() {
     if (sendButton) {
       sendButton.addEventListener('click', function(e) {
         console.log('🔘 Send 버튼 클릭됨!');
+        
+        // 강제 폼 제출 테스트
+        setTimeout(() => {
+          console.log('🔍 폼 제출 상태 확인 중...');
+          const formData = new FormData(contactForm);
+          console.log('폼 데이터:', {
+            name: formData.get('name'),
+            email: formData.get('email'),
+            message: formData.get('message')
+          });
+        }, 100);
       });
     }
   }

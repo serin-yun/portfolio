@@ -133,15 +133,11 @@
       <h2 data-ko="연락처" data-en="Contact">Contact</h2>
       <form name="contact" method="POST" netlify netlify-honeypot="bot-field" id="contact-form">
         <input type="hidden" name="form-name" value="contact" />
-        <!-- 스팸 방지 필드 (사용자에게 보이지 않음) -->
         <input type="hidden" name="bot-field" style="display: none;">
         
         <input class="input" name="name" placeholder="Your name" data-ko-placeholder="이름" data-en-placeholder="Your name" required style="margin-bottom:8px"/>
         <input class="input" name="email" placeholder="Email" data-ko-placeholder="이메일" data-en-placeholder="Email" required style="margin-bottom:8px"/>
         <textarea class="input" name="message" rows="5" placeholder="Message" data-ko-placeholder="메시지" data-en-placeholder="Message" required></textarea>
-        
-        <!-- 성공/실패 메시지 표시 영역 -->
-        <div id="form-message" style="margin-top: 10px; padding: 10px; border-radius: 5px; display: none;"></div>
         
         <div style="margin-top:10px;display:flex;gap:10px">
           <button class="btn" type="submit" data-ko="전송" data-en="Send">Send</button>
