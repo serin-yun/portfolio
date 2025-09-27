@@ -254,6 +254,14 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log('Netlify Forms가 순수하게 작동하도록 설정됨');
   console.log('폼:', contactForm);
   console.log('Send 버튼:', sendButton);
+  
+  // 폼 제출 디버깅을 위한 이벤트 리스너 추가
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      console.log('🚀 폼 제출 이벤트 발생!');
+      console.log('폼 데이터:', new FormData(contactForm));
+    });
+  }
 });
 
 
