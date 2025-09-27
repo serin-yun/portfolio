@@ -250,48 +250,10 @@ document.addEventListener('DOMContentLoaded', function() {
   const sendButton = document.querySelector('button[type="submit"]');
   console.log('Send 버튼:', sendButton);
   
-  if (contactForm) {
-    console.log('폼 제출 이벤트 리스너 추가');
-    contactForm.addEventListener('submit', function(e) {
-      console.log('폼 제출 이벤트 발생!');
-      
-      // 폼 데이터 가져오기 (특정 폼 내부의 입력 필드)
-      const nameInput = contactForm.querySelector('input[name="name"]');
-      const emailInput = contactForm.querySelector('input[name="email"]');
-      const messageInput = contactForm.querySelector('textarea[name="message"]');
-      
-      const name = nameInput ? nameInput.value : '';
-      const email = emailInput ? emailInput.value : '';
-      const message = messageInput ? messageInput.value : '';
-      
-      console.log('폼 데이터:', { name, email, message });
-      
-      // 입력값 검증
-      if (!name || !email || !message) {
-        console.log('입력값 검증 실패');
-        e.preventDefault(); // 유효성 검사 실패 시만 제출 방지
-        alert('모든 필드를 입력해주세요.');
-        return;
-      }
-      
-      // 이메일 형식 검증
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
-        console.log('이메일 형식 검증 실패');
-        e.preventDefault(); // 유효성 검사 실패 시만 제출 방지
-        alert('올바른 이메일 주소를 입력해주세요.');
-        return;
-      }
-      
-      // 유효성 검사 통과 시 Netlify Forms가 자연스럽게 제출됨
-      console.log('유효성 검사 통과 - Netlify Forms가 처리합니다.');
-      
-      // Netlify Forms가 자연스럽게 제출되도록 허용
-      // preventDefault()를 제거하여 기본 폼 제출이 진행되도록 함
-    });
-  } else {
-    console.log('폼을 찾을 수 없습니다');
-  }
+  // Netlify Forms가 순수하게 작동하도록 JavaScript 간섭 완전 제거
+  console.log('Netlify Forms가 순수하게 작동하도록 설정됨');
+  console.log('폼:', contactForm);
+  console.log('Send 버튼:', sendButton);
 });
 
 
