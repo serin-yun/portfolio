@@ -250,41 +250,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const sendButton = document.querySelector('button[type="submit"]');
   console.log('Send 버튼:', sendButton);
   
-  // Netlify Forms가 순수하게 작동하도록 JavaScript 간섭 완전 제거
-  console.log('Netlify Forms가 순수하게 작동하도록 설정됨');
-  console.log('폼:', contactForm);
-  console.log('Send 버튼:', sendButton);
-  
-  // 폼 제출 디버깅을 위한 이벤트 리스너 추가
-  if (contactForm) {
-    console.log('폼 제출 이벤트 리스너 추가됨');
-    contactForm.addEventListener('submit', function(e) {
-      console.log('🚀 폼 제출 이벤트 발생!');
-      console.log('폼 데이터:', new FormData(contactForm));
-    });
-    
-    // Send 버튼 클릭 이벤트도 추가
-    if (sendButton) {
-      sendButton.addEventListener('click', function(e) {
-        console.log('🔘 Send 버튼 클릭됨!');
-        
-        // 강제 폼 제출 테스트
-        setTimeout(() => {
-          console.log('🔍 폼 제출 상태 확인 중...');
-          const formData = new FormData(contactForm);
-          console.log('폼 데이터:', {
-            name: formData.get('name'),
-            email: formData.get('email'),
-            message: formData.get('message')
-          });
-          
-          // 폼 제출 강제 실행 테스트
-          console.log('🚀 폼 제출 강제 실행 테스트...');
-          contactForm.submit();
-        }, 100);
-      });
-    }
-  }
+  // Netlify Forms가 순수하게 작동하도록 모든 JavaScript 간섭 제거
+  console.log('Netlify Forms 순수 작동 모드 - JavaScript 간섭 없음');
 });
 
 
