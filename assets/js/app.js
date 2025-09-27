@@ -254,6 +254,8 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log('Netlify Forms 호환 모드 활성화');
   
   if (contactForm && sendButton) {
+    console.log('이벤트 리스너 추가 중...');
+    
     // Send 버튼 클릭 이벤트로 변경
     sendButton.addEventListener('click', function(e) {
       console.log('🔘 Send 버튼 클릭됨!');
@@ -284,6 +286,12 @@ document.addEventListener('DOMContentLoaded', function() {
       // 유효성 검사 통과 시 Netlify Forms가 자연스럽게 처리
       console.log('유효성 검사 통과 - Netlify Forms가 처리합니다.');
     });
+    
+    console.log('이벤트 리스너 추가 완료');
+  } else {
+    console.log('폼 또는 버튼을 찾을 수 없습니다');
+    console.log('contactForm:', contactForm);
+    console.log('sendButton:', sendButton);
   }
 });
 
