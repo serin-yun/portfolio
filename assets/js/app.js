@@ -250,13 +250,12 @@ document.addEventListener('DOMContentLoaded', function() {
   const sendButton = document.querySelector('button[type="submit"]');
   console.log('Send 버튼:', sendButton);
   
-  // 직접 이메일 전송 구현
-  console.log('직접 이메일 전송 모드 활성화');
+  // Netlify Forms 호환 모드
+  console.log('Netlify Forms 호환 모드 활성화');
   
   if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      console.log('📧 이메일 전송 시작...');
+      console.log('🚀 Netlify Forms 제출 시작...');
       
       // 폼 데이터 수집
       const formData = new FormData(contactForm);
@@ -268,6 +267,7 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // 유효성 검사
       if (!name || !email || !message) {
+        e.preventDefault();
         alert('모든 필드를 입력해주세요.');
         return;
       }
@@ -275,25 +275,13 @@ document.addEventListener('DOMContentLoaded', function() {
       // 이메일 형식 검사
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
+        e.preventDefault();
         alert('올바른 이메일 주소를 입력해주세요.');
         return;
       }
       
-      // 이메일 링크 생성
-      const subject = encodeURIComponent(`포트폴리오 문의 - ${name}`);
-      const body = encodeURIComponent(`이름: ${name}\n이메일: ${email}\n\n메시지:\n${message}`);
-      const mailtoLink = `mailto:smartitpeyun@gmail.com?subject=${subject}&body=${body}`;
-      
-      console.log('이메일 링크:', mailtoLink);
-      
-      // 이메일 클라이언트 열기
-      window.location.href = mailtoLink;
-      
-      // 성공 메시지
-      alert('이메일 클라이언트가 열렸습니다.\n\n📧 smartitpeyun@gmail.com으로 메시지를 전송해주세요.\n\n💡 팁: 이메일 클라이언트가 열리지 않으면 직접 smartitpeyun@gmail.com으로 연락해주세요.');
-      
-      // 폼 초기화
-      contactForm.reset();
+      // 유효성 검사 통과 시 Netlify Forms가 자연스럽게 처리
+      console.log('유효성 검사 통과 - Netlify Forms가 처리합니다.');
     });
   }
 });

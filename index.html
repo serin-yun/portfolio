@@ -22,6 +22,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css"/>
 
+<!-- Netlify Forms 인식을 위한 숨겨진 폼 -->
+<form name="contact" netlify netlify-honeypot="bot-field" hidden>
+  <input type="text" name="name" />
+  <input type="email" name="email" />
+  <textarea name="message"></textarea>
+</form>
 </head>
 <body>
 <nav class="navbar">
@@ -125,7 +131,10 @@
   <section id="contact" class="section contact">
     <div>
       <h2 data-ko="연락처" data-en="Contact">Contact</h2>
-      <form id="contact-form">
+      <form name="contact" method="POST" netlify netlify-honeypot="bot-field" id="contact-form">
+        <input type="hidden" name="form-name" value="contact" />
+        <input type="hidden" name="bot-field" style="display: none;">
+        
         <input class="input" name="name" placeholder="Your name" data-ko-placeholder="이름" data-en-placeholder="Your name" required style="margin-bottom:8px"/>
         <input class="input" name="email" placeholder="Email" data-ko-placeholder="이메일" data-en-placeholder="Email" required style="margin-bottom:8px"/>
         <textarea class="input" name="message" rows="5" placeholder="Message" data-ko-placeholder="메시지" data-en-placeholder="Message" required></textarea>
