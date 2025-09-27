@@ -253,8 +253,52 @@ document.addEventListener('DOMContentLoaded', function() {
   // Netlify Forms 호환 모드
   console.log('Netlify Forms 호환 모드 활성화');
   
-  // Netlify Forms가 순수하게 작동하도록 모든 JavaScript 간섭 제거
-  console.log('Netlify Forms 순수 작동 모드 - JavaScript 간섭 없음');
+  // Netlify Forms 처리 및 사용자 정의 성공 메시지
+  console.log('Netlify Forms 처리 모드 활성화');
+  
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      console.log('📝 폼 제출 시작...');
+      
+      // 폼 데이터 수집
+      const formData = new FormData(contactForm);
+      const name = formData.get('name');
+      const email = formData.get('email');
+      const message = formData.get('message');
+      
+      console.log('폼 데이터:', { name, email, message });
+      
+      // 유효성 검사
+      if (!name || !email || !message) {
+        e.preventDefault();
+        alert('모든 필드를 입력해주세요.');
+        return;
+      }
+      
+      // 이메일 형식 검사
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        e.preventDefault();
+        alert('올바른 이메일 주소를 입력해주세요.');
+        return;
+      }
+      
+      // 유효성 검사 통과 시 사용자 정의 성공 메시지 표시
+      console.log('유효성 검사 통과 - 폼 제출 진행');
+      
+      // 성공 메시지 표시 (HTML 영역에 표시)
+      setTimeout(() => {
+        const successMessage = document.getElementById('success-message');
+        if (successMessage) {
+          successMessage.style.display = 'block';
+          // 폼 숨기기
+          contactForm.style.display = 'none';
+          // 스크롤을 메시지로 이동
+          successMessage.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 1000);
+    });
+  }
 });
 
 
