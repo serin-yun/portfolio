@@ -236,7 +236,7 @@ function showNotification(message, type = 'info') {
 }
 
 // 즉시 실행되는 테스트
-console.log('JavaScript 파일 로드됨!');
+console.log('JavaScript 파일 로드됨! (v2.0 - 성공 메시지 개선)');
 
 // 연락하기 폼 처리
 document.addEventListener('DOMContentLoaded', function() {
@@ -256,6 +256,13 @@ document.addEventListener('DOMContentLoaded', function() {
   // Netlify Forms 처리 및 사용자 정의 성공 메시지
   console.log('Netlify Forms 처리 모드 활성화');
   console.log('✅ 사용자 정의 성공 메시지 기능 활성화됨');
+  
+  // 성공 메시지 요소 존재 확인
+  const successMessage = document.getElementById('success-message');
+  console.log('성공 메시지 요소 확인:', successMessage);
+  if (successMessage) {
+    console.log('성공 메시지 내용:', successMessage.innerHTML);
+  }
   
   if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
