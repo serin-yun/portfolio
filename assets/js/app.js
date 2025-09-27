@@ -253,51 +253,8 @@ document.addEventListener('DOMContentLoaded', function() {
   // Netlify Forms 호환 모드
   console.log('Netlify Forms 호환 모드 활성화');
   
-  if (contactForm && sendButton) {
-    console.log('이벤트 리스너 추가 중...');
-    
-    // Send 버튼 클릭 이벤트로 변경
-    sendButton.addEventListener('click', function(e) {
-      console.log('🔘 Send 버튼 클릭됨!');
-      
-      // 폼 데이터 수집
-      const formData = new FormData(contactForm);
-      const name = formData.get('name');
-      const email = formData.get('email');
-      const message = formData.get('message');
-      
-      console.log('폼 데이터:', { name, email, message });
-      
-      // 유효성 검사
-      if (!name || !email || !message) {
-        e.preventDefault();
-        alert('모든 필드를 입력해주세요.');
-        return;
-      }
-      
-      // 이메일 형식 검사
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
-        e.preventDefault();
-        alert('올바른 이메일 주소를 입력해주세요.');
-        return;
-      }
-      
-      // 유효성 검사 통과 시 Netlify Forms가 자연스럽게 처리
-      console.log('유효성 검사 통과 - Netlify Forms가 처리합니다.');
-    });
-    
-    // 추가: 폼 제출 이벤트도 추가
-    contactForm.addEventListener('submit', function(e) {
-      console.log('📝 폼 제출 이벤트 발생!');
-    });
-    
-    console.log('이벤트 리스너 추가 완료');
-  } else {
-    console.log('폼 또는 버튼을 찾을 수 없습니다');
-    console.log('contactForm:', contactForm);
-    console.log('sendButton:', sendButton);
-  }
+  // Netlify Forms가 순수하게 작동하도록 모든 JavaScript 간섭 제거
+  console.log('Netlify Forms 순수 작동 모드 - JavaScript 간섭 없음');
 });
 
 
