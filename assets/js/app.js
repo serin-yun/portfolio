@@ -535,8 +535,6 @@ function setupNetlifyForm() {
   if (!form) return;
   
   form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
     // 폼 데이터 수집
     const formData = new FormData(form);
     const name = formData.get('name');
@@ -545,6 +543,7 @@ function setupNetlifyForm() {
     
     // 유효성 검사
     if (!name || !email || !message) {
+      e.preventDefault(); // 유효성 검사 실패 시만 제출 방지
       showMessage('모든 필드를 입력해주세요.', 'error');
       return;
     }
@@ -552,28 +551,15 @@ function setupNetlifyForm() {
     // 이메일 형식 검사
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
+      e.preventDefault(); // 유효성 검사 실패 시만 제출 방지
       showMessage('올바른 이메일 주소를 입력해주세요.', 'error');
       return;
     }
     
-    // Netlify Forms로 제출
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(formData).toString()
-    })
-    .then(response => {
-      if (response.ok) {
-        showMessage('메시지가 성공적으로 전송되었습니다!', 'success');
-        form.reset();
-      } else {
-        showMessage('전송에 실패했습니다. 다시 시도해주세요.', 'error');
-      }
-    })
-    .catch(error => {
-      console.error('폼 제출 오류:', error);
-      showMessage('전송 중 오류가 발생했습니다.', 'error');
-    });
+    // 유효성 검사 통과 시 Netlify Forms가 자연스럽게 제출됨
+    console.log('폼 제출 중... Netlify Forms가 처리합니다.');
+    // Netlify Forms는 HTML 폼의 'netlify' 속성을 통해 자동으로 처리되므로,
+    // 여기서는 fetch를 통한 수동 제출 로직을 제거하고 유효성 검사만 수행합니다.
   });
 }
 
