@@ -250,10 +250,10 @@ document.addEventListener('DOMContentLoaded', function() {
   const sendButton = document.querySelector('button[type="submit"]');
   console.log('Send 버튼:', sendButton);
   
-  if (sendButton) {
-    console.log('Send 버튼 이벤트 리스너 추가');
-    sendButton.addEventListener('click', function(e) {
-      console.log('Send 버튼 클릭됨!');
+  if (contactForm) {
+    console.log('폼 제출 이벤트 리스너 추가');
+    contactForm.addEventListener('submit', function(e) {
+      console.log('폼 제출 이벤트 발생!');
       
       // 폼 데이터 가져오기 (특정 폼 내부의 입력 필드)
       const nameInput = contactForm.querySelector('input[name="name"]');
@@ -290,7 +290,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // preventDefault()를 제거하여 기본 폼 제출이 진행되도록 함
     });
   } else {
-    console.log('Send 버튼을 찾을 수 없습니다');
+    console.log('폼을 찾을 수 없습니다');
   }
 });
 
