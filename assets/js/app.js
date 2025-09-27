@@ -257,10 +257,18 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // 폼 제출 디버깅을 위한 이벤트 리스너 추가
   if (contactForm) {
+    console.log('폼 제출 이벤트 리스너 추가됨');
     contactForm.addEventListener('submit', function(e) {
       console.log('🚀 폼 제출 이벤트 발생!');
       console.log('폼 데이터:', new FormData(contactForm));
     });
+    
+    // Send 버튼 클릭 이벤트도 추가
+    if (sendButton) {
+      sendButton.addEventListener('click', function(e) {
+        console.log('🔘 Send 버튼 클릭됨!');
+      });
+    }
   }
 });
 
