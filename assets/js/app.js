@@ -268,6 +268,9 @@ document.addEventListener('DOMContentLoaded', function() {
     contactForm.addEventListener('submit', function(e) {
       console.log('📝 폼 제출 시작...');
       
+      // 폼 제출을 완전히 가로채기
+      e.preventDefault();
+      
       // 폼 데이터 수집
       const formData = new FormData(contactForm);
       const name = formData.get('name');
@@ -278,7 +281,6 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // 유효성 검사
       if (!name || !email || !message) {
-        e.preventDefault();
         alert('모든 필드를 입력해주세요.');
         return;
       }
@@ -286,34 +288,38 @@ document.addEventListener('DOMContentLoaded', function() {
       // 이메일 형식 검사
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
-        e.preventDefault();
         alert('올바른 이메일 주소를 입력해주세요.');
         return;
       }
       
       // 유효성 검사 통과 시 사용자 정의 성공 메시지 표시
-      console.log('유효성 검사 통과 - 폼 제출 진행');
+      console.log('유효성 검사 통과 - 사용자 정의 성공 메시지 표시');
       
-      // 성공 메시지 표시 (HTML 영역에 표시)
-      console.log('🎯 성공 메시지 표시 준비 중...');
+      // 즉시 성공 메시지 표시
+      const successMessage = document.getElementById('success-message');
+      if (successMessage) {
+        console.log('✅ 성공 메시지 표시 중...');
+        successMessage.style.display = 'block';
+        // 폼 숨기기
+        contactForm.style.display = 'none';
+        // 스크롤을 메시지로 이동
+        successMessage.scrollIntoView({ behavior: 'smooth' });
+        console.log('🎉 성공 메시지 표시 완료!');
+      } else {
+        console.log('❌ 성공 메시지 요소를 찾을 수 없음');
+      }
       
-      setTimeout(() => {
-        console.log('⏰ 1초 후 성공 메시지 표시');
-        const successMessage = document.getElementById('success-message');
-        console.log('성공 메시지 요소:', successMessage);
-        
-        if (successMessage) {
-          console.log('✅ 성공 메시지 표시 중...');
-          successMessage.style.display = 'block';
-          // 폼 숨기기
-          contactForm.style.display = 'none';
-          // 스크롤을 메시지로 이동
-          successMessage.scrollIntoView({ behavior: 'smooth' });
-          console.log('🎉 성공 메시지 표시 완료!');
-        } else {
-          console.log('❌ 성공 메시지 요소를 찾을 수 없음');
-        }
-      }, 1000);
+      // Netlify Forms로 수동 제출
+      console.log('📤 Netlify Forms로 수동 제출 중...');
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData)
+      }).then(response => {
+        console.log('📤 Netlify Forms 제출 완료:', response);
+      }).catch(error => {
+        console.log('📤 Netlify Forms 제출 오류:', error);
+      });
     });
   }
 });
