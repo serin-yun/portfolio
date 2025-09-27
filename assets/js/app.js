@@ -262,7 +262,17 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log('성공 메시지 요소 확인:', successMessage);
   if (successMessage) {
     console.log('성공 메시지 내용:', successMessage.innerHTML);
+    console.log('성공 메시지 현재 display:', successMessage.style.display);
   }
+  
+  // 성공 메시지 강제 표시 테스트 (5초 후)
+  setTimeout(() => {
+    console.log('🧪 성공 메시지 강제 표시 테스트 시작');
+    if (successMessage) {
+      successMessage.style.display = 'block';
+      console.log('🧪 성공 메시지 강제 표시됨');
+    }
+  }, 5000);
   
   if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
@@ -297,13 +307,27 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // 즉시 성공 메시지 표시
       const successMessage = document.getElementById('success-message');
+      console.log('🔍 성공 메시지 요소 재확인:', successMessage);
+      
       if (successMessage) {
         console.log('✅ 성공 메시지 표시 중...');
+        console.log('🔍 표시 전 display 상태:', successMessage.style.display);
+        
         successMessage.style.display = 'block';
+        successMessage.style.visibility = 'visible';
+        successMessage.style.opacity = '1';
+        console.log('🔍 표시 후 display 상태:', successMessage.style.display);
+        console.log('🔍 표시 후 visibility 상태:', successMessage.style.visibility);
+        console.log('🔍 표시 후 opacity 상태:', successMessage.style.opacity);
+        
         // 폼 숨기기
         contactForm.style.display = 'none';
+        console.log('🔍 폼 숨김 완료');
+        
         // 스크롤을 메시지로 이동
         successMessage.scrollIntoView({ behavior: 'smooth' });
+        console.log('🔍 스크롤 이동 완료');
+        
         console.log('🎉 성공 메시지 표시 완료!');
         
         // 닫기 버튼 이벤트 리스너 추가
