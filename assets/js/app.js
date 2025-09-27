@@ -283,32 +283,11 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
       }
       
-      // 유효성 검사 통과 시 Netlify Forms로 제출
+      // 유효성 검사 통과 시 Netlify Forms가 자연스럽게 제출됨
       console.log('유효성 검사 통과 - Netlify Forms가 처리합니다.');
       
-      // Netlify Forms로 제출
-      const formData = new FormData(contactForm);
-      fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData).toString()
-      })
-      .then(response => {
-        if (response.ok) {
-          // 사용자 정의 성공 메시지 표시
-          alert('메시지가 성공적으로 전송되었습니다!');
-          contactForm.reset();
-        } else {
-          alert('전송에 실패했습니다. 다시 시도해주세요.');
-        }
-      })
-      .catch(error => {
-        console.error('폼 제출 오류:', error);
-        alert('전송 중 오류가 발생했습니다.');
-      });
-      
-      // 기본 폼 제출 방지
-      e.preventDefault();
+      // Netlify Forms가 자연스럽게 제출되도록 허용
+      // preventDefault()를 제거하여 기본 폼 제출이 진행되도록 함
     });
   } else {
     console.log('Send 버튼을 찾을 수 없습니다');
