@@ -527,9 +527,84 @@ function generateOnlineQRCode() {
   img.src = qrApiUrl;
 }
 
+// Netlify Forms 처리 함수
+function setupNetlifyForm() {
+  const form = document.getElementById('contact-form');
+  const messageDiv = document.getElementById('form-message');
+  
+  if (!form) return;
+  
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // 폼 데이터 수집
+    const formData = new FormData(form);
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const message = formData.get('message');
+    
+    // 유효성 검사
+    if (!name || !email || !message) {
+      showMessage('모든 필드를 입력해주세요.', 'error');
+      return;
+    }
+    
+    // 이메일 형식 검사
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      showMessage('올바른 이메일 주소를 입력해주세요.', 'error');
+      return;
+    }
+    
+    // Netlify Forms로 제출
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(formData).toString()
+    })
+    .then(response => {
+      if (response.ok) {
+        showMessage('메시지가 성공적으로 전송되었습니다!', 'success');
+        form.reset();
+      } else {
+        showMessage('전송에 실패했습니다. 다시 시도해주세요.', 'error');
+      }
+    })
+    .catch(error => {
+      console.error('폼 제출 오류:', error);
+      showMessage('전송 중 오류가 발생했습니다.', 'error');
+    });
+  });
+}
+
+// 메시지 표시 함수
+function showMessage(text, type) {
+  const messageDiv = document.getElementById('form-message');
+  if (!messageDiv) return;
+  
+  messageDiv.textContent = text;
+  messageDiv.style.display = 'block';
+  
+  if (type === 'success') {
+    messageDiv.style.backgroundColor = '#d1fae5';
+    messageDiv.style.color = '#065f46';
+    messageDiv.style.border = '1px solid #10b981';
+  } else {
+    messageDiv.style.backgroundColor = '#fee2e2';
+    messageDiv.style.color = '#991b1b';
+    messageDiv.style.border = '1px solid #ef4444';
+  }
+  
+  // 5초 후 메시지 숨기기
+  setTimeout(() => {
+    messageDiv.style.display = 'none';
+  }, 5000);
+}
+
 // 페이지 로드 시 연락처 정보 업데이트 및 QR코드 생성
 document.addEventListener('DOMContentLoaded', function() {
   updateContactInfo();
+  setupNetlifyForm();
   
   // 즉시 QR코드 생성 (온라인 API 사용)
   generateOnlineQRCode();
