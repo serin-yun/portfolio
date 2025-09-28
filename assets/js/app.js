@@ -670,11 +670,188 @@ function setupMobileMenu() {
 
 
 
+// 스크롤 인디케이터 생성
+function createScrollIndicator() {
+  const indicator = document.createElement('div');
+  indicator.className = 'scroll-indicator';
+  indicator.innerHTML = '<div class="scroll-progress"></div>';
+  document.body.appendChild(indicator);
+  
+  // 스크롤 진행률 업데이트
+  window.addEventListener('scroll', function() {
+    const scrollTop = window.pageYOffset;
+    const docHeight = document.body.scrollHeight - window.innerHeight;
+    const scrollPercent = (scrollTop / docHeight) * 100;
+    
+    const progressBar = document.querySelector('.scroll-progress');
+    if (progressBar) {
+      progressBar.style.width = scrollPercent + '%';
+    }
+  });
+}
+
+// 로딩 애니메이션
+function showLoadingAnimation() {
+  const loadingOverlay = document.createElement('div');
+  loadingOverlay.className = 'loading-overlay';
+  loadingOverlay.innerHTML = '<div class="loading-spinner"></div>';
+  document.body.appendChild(loadingOverlay);
+  
+  // 페이지 로드 완료 후 로딩 숨기기
+  window.addEventListener('load', function() {
+    setTimeout(() => {
+      loadingOverlay.classList.add('hidden');
+      setTimeout(() => {
+        loadingOverlay.remove();
+      }, 500);
+    }, 1000);
+  });
+}
+
+// 스크롤 기반 애니메이션
+function setupScrollAnimations() {
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, observerOptions);
+  
+  // 애니메이션 대상 요소들 관찰
+  const animatedElements = document.querySelectorAll('.card, .skill, .hero-text, .hero-visual, .about, .contact');
+  animatedElements.forEach((el, index) => {
+    // 다양한 애니메이션 클래스 적용
+    if (el.classList.contains('card')) {
+      el.classList.add('fade-in');
+    } else if (el.classList.contains('skill')) {
+      el.classList.add('scale-in');
+    } else if (el.classList.contains('hero-text')) {
+      el.classList.add('slide-in-left');
+    } else if (el.classList.contains('hero-visual')) {
+      el.classList.add('slide-in-right');
+    } else {
+      el.classList.add('fade-in');
+    }
+    
+    // 지연 시간 적용
+    el.style.transitionDelay = `${index * 0.1}s`;
+    observer.observe(el);
+  });
+}
+
+// 스킬 태그 클릭 애니메이션 개선
+function setupSkillAnimations() {
+  document.querySelectorAll('.skill').forEach(skill => {
+    skill.addEventListener('click', function() {
+      // 기존 애니메이션 클래스 제거
+      this.classList.remove('clicked');
+      
+      // 새로운 애니메이션 클래스 추가
+      setTimeout(() => {
+        this.classList.add('clicked');
+      }, 10);
+      
+      // 애니메이션 완료 후 클래스 제거
+      setTimeout(() => {
+        this.classList.remove('clicked');
+      }, 600);
+    });
+  });
+}
+
+// 카드 호버 효과 개선
+function setupCardHoverEffects() {
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      this.style.transform = 'translateY(-8px) scale(1.02)';
+      this.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.15)';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+      this.style.transform = 'translateY(0) scale(1)';
+      this.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+    });
+  });
+}
+
+// 부드러운 스크롤 개선
+function setupSmoothScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        const offsetTop = target.offsetTop - 100; // 네비게이션 높이 고려
+        
+        window.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+}
+
+// 페이지 전환 효과
+function setupPageTransitions() {
+  // 링크 클릭 시 전환 효과
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        // 전환 효과 시작
+        const transition = document.createElement('div');
+        transition.className = 'page-transition';
+        document.body.appendChild(transition);
+        
+        // 전환 효과 활성화
+        setTimeout(() => {
+          transition.classList.add('active');
+        }, 10);
+        
+        // 스크롤 이동
+        setTimeout(() => {
+          const offsetTop = target.offsetTop - 100;
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+        }, 300);
+        
+        // 전환 효과 제거
+        setTimeout(() => {
+          transition.classList.remove('active');
+          setTimeout(() => {
+            transition.remove();
+          }, 600);
+        }, 900);
+      }
+    });
+  });
+}
+
 // 페이지 로드 시 연락처 정보 업데이트 및 QR코드 생성
 document.addEventListener('DOMContentLoaded', function() {
   updateContactInfo();
   setupNetlifyForm();
   setupMobileMenu();
+  
+  // 새로운 인터랙티브 기능들 추가
+  createScrollIndicator();
+  showLoadingAnimation();
+  setupScrollAnimations();
+  setupSkillAnimations();
+  setupCardHoverEffects();
+  setupSmoothScroll();
+  setupPageTransitions();
   
   // 즉시 QR코드 생성 (온라인 API 사용)
   generateOnlineQRCode();
