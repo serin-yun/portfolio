@@ -1,0 +1,7 @@
+# Netlify Redirects for Performance
+
+# SPA fallback
+/*    /index.html   200
+
+# Redirect old URLs to new ones (if needed)
+# /old-page    /new-page    301

@@ -708,42 +708,6 @@ function showLoadingAnimation() {
   });
 }
 
-// 스크롤 기반 애니메이션
-function setupScrollAnimations() {
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  };
-  
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, observerOptions);
-  
-  // 애니메이션 대상 요소들 관찰
-  const animatedElements = document.querySelectorAll('.card, .skill, .hero-text, .hero-visual, .about, .contact');
-  animatedElements.forEach((el, index) => {
-    // 다양한 애니메이션 클래스 적용
-    if (el.classList.contains('card')) {
-      el.classList.add('fade-in');
-    } else if (el.classList.contains('skill')) {
-      el.classList.add('scale-in');
-    } else if (el.classList.contains('hero-text')) {
-      el.classList.add('slide-in-left');
-    } else if (el.classList.contains('hero-visual')) {
-      el.classList.add('slide-in-right');
-    } else {
-      el.classList.add('fade-in');
-    }
-    
-    // 지연 시간 적용
-    el.style.transitionDelay = `${index * 0.1}s`;
-    observer.observe(el);
-  });
-}
 
 // 스킬 태그 클릭 애니메이션 개선
 function setupSkillAnimations() {
@@ -838,21 +802,70 @@ function setupPageTransitions() {
   });
 }
 
+// 성능 최적화: requestIdleCallback 사용
+function runWhenIdle(callback) {
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(callback);
+  } else {
+    setTimeout(callback, 1);
+  }
+}
+
+// 성능 최적화: Intersection Observer 최적화
+function setupOptimizedScrollAnimations() {
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        // 성능 최적화: 한 번 애니메이션된 요소는 관찰 중단
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+  
+  // 애니메이션 대상 요소들 관찰
+  const animatedElements = document.querySelectorAll('.card, .skill, .hero-text, .hero-visual, .about, .contact');
+  animatedElements.forEach((el, index) => {
+    // 다양한 애니메이션 클래스 적용
+    if (el.classList.contains('card')) {
+      el.classList.add('fade-in');
+    } else if (el.classList.contains('skill')) {
+      el.classList.add('scale-in');
+    } else if (el.classList.contains('hero-text')) {
+      el.classList.add('slide-in-left');
+    } else if (el.classList.contains('hero-visual')) {
+      el.classList.add('slide-in-right');
+    } else {
+      el.classList.add('fade-in');
+    }
+    
+    // 지연 시간 적용
+    el.style.transitionDelay = `${index * 0.1}s`;
+    observer.observe(el);
+  });
+}
+
 // 페이지 로드 시 연락처 정보 업데이트 및 QR코드 생성
 document.addEventListener('DOMContentLoaded', function() {
+  // 즉시 실행 필요한 기능들
   updateContactInfo();
   setupNetlifyForm();
   setupMobileMenu();
-  
-  // 새로운 인터랙티브 기능들 추가
   createScrollIndicator();
   showLoadingAnimation();
-  setupScrollAnimations();
-  setupSkillAnimations();
-  setupCardHoverEffects();
   setupSmoothScroll();
-  setupPageTransitions();
   
-  // 즉시 QR코드 생성 (온라인 API 사용)
-  generateOnlineQRCode();
+  // 성능 최적화: 지연 실행
+  runWhenIdle(() => {
+    setupOptimizedScrollAnimations();
+    setupSkillAnimations();
+    setupCardHoverEffects();
+    setupPageTransitions();
+    generateOnlineQRCode();
+  });
 });

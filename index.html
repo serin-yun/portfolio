@@ -36,10 +36,18 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default"/>
 <meta name="apple-mobile-web-app-title" content="Serin Yun Portfolio"/>
 <title>Serin Yun Portfolio — IT Project Manager</title>
+<!-- Favicon 최적화 -->
 <link rel="icon" type="image/svg+xml" href="assets/img/avatar.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/avatar.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="assets/img/avatar.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="assets/img/avatar.png"/>
+<link rel="manifest" href="manifest.json"/>
+<!-- Google Fonts 최적화 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"></noscript>
 <link rel="stylesheet" href="assets/css/style.css"/>
 
 <!-- 구조화된 데이터 (JSON-LD) -->
@@ -188,7 +196,7 @@
       
       <div class="hero-visual slide-in-right">
         <div class="hero-image-container">
-          <img src="assets/img/hero.svg" alt="Serin Yun Portfolio Hero Image - IT Project Management Professional" loading="eager" class="hero-image"/>
+          <img src="assets/img/hero.svg" alt="Serin Yun Portfolio Hero Image - IT Project Management Professional" loading="eager" class="hero-image" fetchpriority="high"/>
           <div class="hero-decoration">
             <div class="decoration-circle circle-1"></div>
             <div class="decoration-circle circle-2"></div>

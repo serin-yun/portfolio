@@ -1,0 +1,35 @@
+# Netlify Headers for Performance Optimization
+
+# CSS and JS files - 캐시 1년
+/assets/css/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/js/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Images - 캐시 1년
+/assets/img/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Fonts - 캐시 1년
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# HTML files - 캐시 1시간
+/*.html
+  Cache-Control: public, max-age=3600
+
+# Root files - 캐시 1시간
+/
+  Cache-Control: public, max-age=3600
+
+# Security headers
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# Performance headers
+/*
+  X-DNS-Prefetch-Control: on
