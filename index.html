@@ -6,21 +6,103 @@
 <meta name="description" content="Serin Yun - IT Project Manager with 15 years experience. Expert in ERP, AI Solutions, and large-scale system construction. Certified Information Management Engineer, Data Architecture Specialist, SAP Consultant."/>
 <meta name="keywords" content="IT Project Manager, ERP, AI Solutions, SAP Consultant, Data Architecture, Information Management Engineer, Portfolio, Serin Yun"/>
 <meta name="author" content="Serin Yun"/>
+<!-- Open Graph 메타 태그 -->
 <meta property="og:title" content="Serin Yun Portfolio — IT Project Manager"/>
-<meta property="og:description" content="IT Project Manager with 15 years experience. Expert in ERP, AI Solutions, and large-scale system construction."/>
+<meta property="og:description" content="IT Project Manager with 15 years experience. Expert in ERP, AI Solutions, and large-scale system construction. Certified Information Management Engineer, Data Architecture Specialist, SAP Consultant."/>
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="https://smartitpeyun.github.io"/>
-<meta property="og:image" content="https://smartitpeyun.github.io/assets/img/avatar.png"/>
+<meta property="og:url" content="https://serin-portfolio.netlify.app"/>
+<meta property="og:image" content="https://serin-portfolio.netlify.app/assets/img/avatar.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="Serin Yun - IT Project Manager Professional Photo"/>
+<meta property="og:site_name" content="Serin Yun Portfolio"/>
+<meta property="og:locale" content="ko_KR"/>
+
+<!-- Twitter Cards 메타 태그 -->
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="Serin Yun Portfolio — IT Project Manager"/>
-<meta name="twitter:description" content="IT Project Manager with 15 years experience. Expert in ERP, AI Solutions, and large-scale system construction."/>
-<meta name="twitter:image" content="https://smartitpeyun.github.io/assets/img/avatar.png"/>
+<meta name="twitter:description" content="IT Project Manager with 15 years experience. Expert in ERP, AI Solutions, and large-scale system construction. Certified Information Management Engineer, Data Architecture Specialist, SAP Consultant."/>
+<meta name="twitter:image" content="https://serin-portfolio.netlify.app/assets/img/avatar.png"/>
+<meta name="twitter:image:alt" content="Serin Yun - IT Project Manager Professional Photo"/>
+<meta name="twitter:site" content="@serin_yun"/>
+<meta name="twitter:creator" content="@serin_yun"/>
+
+<!-- 추가 SEO 메타 태그 -->
+<meta name="robots" content="index, follow"/>
+<meta name="googlebot" content="index, follow"/>
+<meta name="theme-color" content="#3b82f6"/>
+<meta name="msapplication-TileColor" content="#3b82f6"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+<meta name="apple-mobile-web-app-title" content="Serin Yun Portfolio"/>
 <title>Serin Yun Portfolio — IT Project Manager</title>
 <link rel="icon" type="image/svg+xml" href="assets/img/avatar.svg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css"/>
+
+<!-- 구조화된 데이터 (JSON-LD) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Serin Yun",
+  "jobTitle": "IT Project Manager",
+  "description": "15년차 대규모 시스템 구축 및 운영 전문가. 통신/방송/제조/전자상거래 분야 경험. 정보관리기술사, 데이터아키텍처 전문가, SAP 컨설턴트 자격 보유.",
+  "url": "https://serin-portfolio.netlify.app",
+  "image": "https://serin-portfolio.netlify.app/assets/img/avatar.png",
+  "sameAs": [
+    "https://github.com/serin-yun/",
+    "https://linkedin.com/in/smartitpeyun"
+  ],
+  "knowsAbout": [
+    "ERP",
+    "AI Solutions",
+    "SAP Consulting",
+    "Data Architecture",
+    "Project Management",
+    "Information Management",
+    "Large-scale System Construction"
+  ],
+  "hasCredential": [
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "정보관리기술사",
+      "credentialCategory": "Professional Certification"
+    },
+    {
+      "@type": "EducationalOccupationalCredential", 
+      "name": "데이터아키텍처 전문가",
+      "credentialCategory": "Professional Certification"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "SAP 컨설턴트",
+      "credentialCategory": "Professional Certification"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "OCP DBA",
+      "credentialCategory": "Professional Certification"
+    }
+  ],
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Amorepacific"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+82-10-4143-9828",
+    "contactType": "business",
+    "email": "smartitpeyun@gmail.com"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "KR"
+  }
+}
+</script>
 
 <!-- Netlify Forms 인식을 위한 숨겨진 폼 -->
 <form name="contact" netlify netlify-honeypot="bot-field" hidden>
@@ -119,19 +201,49 @@
 </header>
 
 <main class="container">
-  <section id="projects" class="section">
+  <section id="projects" class="section" itemscope itemtype="https://schema.org/ItemList">
     <h2 data-ko="주요 프로젝트" data-en="Featured Projects">Featured Projects</h2>
     <div class="grid">
-      <article class="card"><img src="assets/img/project1.svg" alt="ERP SCM System Dashboard - Amorepacific Supply Chain Management" loading="lazy"/><div class="body"><span class="badge">ERP</span><h3 data-ko="아모레퍼시픽 SCM 시스템" data-en="Amorepacific SCM System">아모레퍼시픽 SCM 시스템</h3><p class="subtitle" data-ko="공급망 플래닝/ERP 구축" data-en="Supply Chain Planning/ERP Construction">공급망 플래닝/ERP 구축</p></div></article>
-      <article class="card"><img src="assets/img/project2.svg" alt="AI Solution Architecture - Generative AI Data Flow" loading="lazy"/><div class="body"><span class="badge">AI</span><h3 data-ko="생성형 AI 솔루션" data-en="Generative AI Solution">생성형 AI 솔루션</h3><p class="subtitle" data-ko="데이터 기반 프로젝트 기획" data-en="Data-based Project Planning">데이터 기반 프로젝트 기획</p></div></article>
-      <article class="card"><img src="assets/img/project3.svg" alt="Large Scale System Architecture - SK Amorepacific Enterprise Systems" loading="lazy"/><div class="body"><span class="badge">System</span><h3 data-ko="SK·아모레 대규모 프로젝트" data-en="SK·Amore Large-scale Project">SK·아모레 대규모 프로젝트</h3><p class="subtitle" data-ko="통신/방송/제조/전자상거래" data-en="Telecommunications/Broadcasting/Manufacturing/E-commerce">통신/방송/제조/전자상거래</p></div></article>
+      <article class="card" itemscope itemtype="https://schema.org/CreativeWork">
+        <img src="assets/img/project1.svg" alt="ERP SCM System Dashboard - Amorepacific Supply Chain Management" loading="lazy"/>
+        <div class="body">
+          <span class="badge">ERP</span>
+          <h3 itemprop="name" data-ko="아모레퍼시픽 SCM 시스템" data-en="Amorepacific SCM System">아모레퍼시픽 SCM 시스템</h3>
+          <p class="subtitle" itemprop="description" data-ko="공급망 플래닝/ERP 구축" data-en="Supply Chain Planning/ERP Construction">공급망 플래닝/ERP 구축</p>
+        </div>
+      </article>
+      <article class="card" itemscope itemtype="https://schema.org/CreativeWork">
+        <img src="assets/img/project2.svg" alt="AI Solution Architecture - Generative AI Data Flow" loading="lazy"/>
+        <div class="body">
+          <span class="badge">AI</span>
+          <h3 itemprop="name" data-ko="생성형 AI 솔루션" data-en="Generative AI Solution">생성형 AI 솔루션</h3>
+          <p class="subtitle" itemprop="description" data-ko="데이터 기반 프로젝트 기획" data-en="Data-based Project Planning">데이터 기반 프로젝트 기획</p>
+        </div>
+      </article>
+      <article class="card" itemscope itemtype="https://schema.org/CreativeWork">
+        <img src="assets/img/project3.svg" alt="Large Scale System Architecture - SK Amorepacific Enterprise Systems" loading="lazy"/>
+        <div class="body">
+          <span class="badge">System</span>
+          <h3 itemprop="name" data-ko="SK·아모레 대규모 프로젝트" data-en="SK·Amore Large-scale Project">SK·아모레 대규모 프로젝트</h3>
+          <p class="subtitle" itemprop="description" data-ko="통신/방송/제조/전자상거래" data-en="Telecommunications/Broadcasting/Manufacturing/E-commerce">통신/방송/제조/전자상거래</p>
+        </div>
+      </article>
     </div>
   </section>
 
-  <section id="about" class="section about fade-in">
-    <img src="assets/img/avatar.png" alt="Serin Yun Profile Photo - IT Project Manager"/>
-    <div><h2 data-ko="소개" data-en="About">About</h2><p class="subtitle" data-ko="아모레퍼시픽 IT 프로젝트 PM, 15년차 대규모 시스템 구축 및 운영 전문가. 통신/방송/제조/전자상거래 분야 경험. 정보관리기술사, 데이터아키텍처 전문가, SAP 컨설턴트 자격 보유." data-en="Amorepacific IT Project PM, 15-year expert in large-scale system construction and operation. Experience in telecommunications/broadcasting/manufacturing/e-commerce sectors. Certified Information Management Engineer, Data Architecture Specialist, SAP Consultant.">아모레퍼시픽 IT 프로젝트 PM, 15년차 대규모 시스템 구축 및 운영 전문가. 통신/방송/제조/전자상거래 분야 경험. 정보관리기술사, 데이터아키텍처 전문가, SAP 컨설턴트 자격 보유.</p>
-      <div class="skills"><div class="skill scale-in" data-ko="정보관리기술사" data-en="Information Management Engineer">정보관리기술사</div><div class="skill scale-in" data-ko="데이터아키텍처" data-en="Data Architecture">데이터아키텍처</div><div class="skill scale-in" data-ko="SAP 컨설턴트" data-en="SAP Consultant">SAP 컨설턴트</div><div class="skill scale-in" data-ko="OCP DBA" data-en="OCP DBA">OCP DBA</div><div class="skill scale-in" data-ko="생성형 AI" data-en="Generative AI">생성형 AI</div><div class="skill scale-in" data-ko="ERP" data-en="ERP">ERP</div></div>
+  <section id="about" class="section about fade-in" itemscope itemtype="https://schema.org/Person">
+    <img src="assets/img/avatar.png" alt="Serin Yun Profile Photo - IT Project Manager" itemprop="image"/>
+    <div>
+      <h2 data-ko="소개" data-en="About">About</h2>
+      <p class="subtitle" itemprop="description" data-ko="아모레퍼시픽 IT 프로젝트 PM, 15년차 대규모 시스템 구축 및 운영 전문가. 통신/방송/제조/전자상거래 분야 경험. 정보관리기술사, 데이터아키텍처 전문가, SAP 컨설턴트 자격 보유." data-en="Amorepacific IT Project PM, 15-year expert in large-scale system construction and operation. Experience in telecommunications/broadcasting/manufacturing/e-commerce sectors. Certified Information Management Engineer, Data Architecture Specialist, SAP Consultant.">아모레퍼시픽 IT 프로젝트 PM, 15년차 대규모 시스템 구축 및 운영 전문가. 통신/방송/제조/전자상거래 분야 경험. 정보관리기술사, 데이터아키텍처 전문가, SAP 컨설턴트 자격 보유.</p>
+      <div class="skills" itemprop="knowsAbout">
+        <div class="skill scale-in" data-ko="정보관리기술사" data-en="Information Management Engineer">정보관리기술사</div>
+        <div class="skill scale-in" data-ko="데이터아키텍처" data-en="Data Architecture">데이터아키텍처</div>
+        <div class="skill scale-in" data-ko="SAP 컨설턴트" data-en="SAP Consultant">SAP 컨설턴트</div>
+        <div class="skill scale-in" data-ko="OCP DBA" data-en="OCP DBA">OCP DBA</div>
+        <div class="skill scale-in" data-ko="생성형 AI" data-en="Generative AI">생성형 AI</div>
+        <div class="skill scale-in" data-ko="ERP" data-en="ERP">ERP</div>
+      </div>
     </div>
   </section>
 

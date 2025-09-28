@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://serin-portfolio.netlify.app/sitemap.xml
+
+# 크롤링 허용
+Crawl-delay: 1
+
+# 특정 파일 제외 (필요시)
+# Disallow: /assets/css/
+# Disallow: /assets/js/
